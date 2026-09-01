@@ -3,7 +3,7 @@
   "name": "osct",
   "version": "0.1.0",
   "description": "The whole Open Source Contribution Toolkit. Installs the audit, issue, pull request, review and documentation skills.",
-  "author": { "name": "fedonman", "url": "https://github.com/fedonman" },
+  "author": { "name": "Vyron Vasileiadis", "url": "https://github.com/fedonman" },
   "homepage": "https://github.com/fedonman/osct",
   "license": "Apache-2.0",
   "keywords": ["osct", "open-source", "contribution"],

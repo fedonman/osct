@@ -3,7 +3,7 @@
   "name": "osct-audit",
   "version": "0.1.0",
   "description": "Audit a repo for bugs, features and tasks and write them up as issue drafts under .osct/issue-ideas/, each bug carrying a repro that was actually run.",
-  "author": { "name": "fedonman", "url": "https://github.com/fedonman" },
+  "author": { "name": "Vyron Vasileiadis", "url": "https://github.com/fedonman" },
   "homepage": "https://github.com/fedonman/osct",
   "license": "Apache-2.0",
   "keywords": ["osct", "open-source", "contribution"],

@@ -3,7 +3,7 @@
   "name": "osct-open-issue",
   "version": "0.1.0",
   "description": "File a GitHub issue from the CLI: pick the template, keep the body short, set the type and the module label, and move the draft to the filed folder.",
-  "author": { "name": "fedonman", "url": "https://github.com/fedonman" },
+  "author": { "name": "Vyron Vasileiadis", "url": "https://github.com/fedonman" },
   "homepage": "https://github.com/fedonman/osct",
   "license": "Apache-2.0",
   "keywords": ["osct", "open-source", "contribution"],

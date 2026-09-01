@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "osct",
   "owner": {
-    "name": "fedonman",
+    "name": "Vyron Vasileiadis",
     "url": "https://github.com/fedonman"
   },
   "description": "The Open Source Contribution Toolkit: skills for auditing a repo, filing issues, opening and reviewing pull requests, and writing documentation.",
