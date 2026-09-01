@@ -64,9 +64,9 @@ back. This is the section the writer reads most often, so keep it tight.>
 
 ## Local conventions
 
-<Anything true here that a writer would otherwise get wrong: features the site
-config enables but no page uses, a spelling the tree is consistent on, a fence
-language the pages leave bare.>
+<Anything true here that a writer would otherwise get wrong: the license header
+new files carry, features the site config enables but no page uses, a spelling
+the tree is consistent on, a fence language the pages leave bare.>
 ```
 
 ## config.toml
