@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "osct",
+  "version": "0.1.0",
+  "description": "The whole Open Source Contribution Toolkit. Installs the audit, issue, pull request, review and documentation skills.",
+  "author": { "name": "fedonman", "url": "https://github.com/fedonman" },
+  "homepage": "https://github.com/fedonman/osct",
+  "license": "Apache-2.0",
+  "keywords": ["osct", "open-source", "contribution"],
+  "dependencies": [
+    "osct-audit@osct",
+    "osct-docs@osct",
+    "osct-open-issue@osct",
+    "osct-open-pr@osct",
+    "osct-pr-review@osct"
+  ]
+}

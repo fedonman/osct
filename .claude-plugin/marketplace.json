@@ -1,0 +1,41 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "osct",
+  "owner": {
+    "name": "fedonman",
+    "url": "https://github.com/fedonman"
+  },
+  "description": "The Open Source Contribution Toolkit: skills for auditing a repo, filing issues, opening and reviewing pull requests, and writing documentation.",
+  "plugins": [
+    {
+      "name": "osct",
+      "source": "./plugins/osct",
+      "description": "The whole Open Source Contribution Toolkit. Installs the audit, issue, pull request, review and documentation skills."
+    },
+    {
+      "name": "osct-audit",
+      "source": "./plugins/osct-audit",
+      "description": "Audit a repo for bugs, features and tasks and write them up as issue drafts under .osct/issue-ideas/, each bug carrying a repro that was actually run."
+    },
+    {
+      "name": "osct-docs",
+      "source": "./plugins/osct-docs",
+      "description": "Write and edit documentation: a house writing style, per-project conventions kept in .osct/docs/, a change checklist, and a checker for examples, links and prose."
+    },
+    {
+      "name": "osct-open-issue",
+      "source": "./plugins/osct-open-issue",
+      "description": "File a GitHub issue from the CLI: pick the template, keep the body short, set the type and the module label, and move the draft to the filed folder."
+    },
+    {
+      "name": "osct-open-pr",
+      "source": "./plugins/osct-open-pr",
+      "description": "Open a pull request from the CLI: branch off main, write a one-paragraph body, link the issue, and fall back to the REST endpoint when gh pr edit fails."
+    },
+    {
+      "name": "osct-pr-review",
+      "source": "./plugins/osct-pr-review",
+      "description": "Review a pull request into numbered, pasteable file:line comments with suggestion blocks, drafted to .osct/reviews/ for approval before anything is posted."
+    }
+  ]
+}

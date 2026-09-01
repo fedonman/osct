@@ -1,0 +1,11 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "osct-pr-review",
+  "version": "0.1.0",
+  "description": "Review a pull request into numbered, pasteable file:line comments with suggestion blocks, drafted to .osct/reviews/ for approval before anything is posted.",
+  "author": { "name": "fedonman", "url": "https://github.com/fedonman" },
+  "homepage": "https://github.com/fedonman/osct",
+  "license": "Apache-2.0",
+  "keywords": ["osct", "open-source", "contribution"],
+  "skills": ["./"]
+}
