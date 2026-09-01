@@ -10,9 +10,8 @@ The diff and CI carry the detail. The body is one short paragraph.
 ## Tools
 
 - Work out the blast radius of the symbols you touched before pushing: it names the callers and the tests to run, including the ones the diff never mentions. `codegraph_explore` gives it in one call where the repo is indexed.
-- Ponytail the diff before you open. Anything there to serve a case nobody asked for comes out now, not in review.
+- Cut the diff back before you open. Anything there to serve a case nobody asked for comes out now, not in review.
 - Commit subjects follow the repo's own style, check `git log --oneline`. Use Conventional Commits only if that log already does.
-- Caveman is for the chat. The PR body and the commit message are plain English.
 
 ## 1. Branch first
 

@@ -23,10 +23,29 @@ install them one at a time instead:
 /plugin install osct-pr-review@osct
 ```
 
+## Setting up a repository
+
+Once per project, run:
+
+```
+/osct-init
+```
+
+It creates the `.osct/` tree, adds `.osct/` and `.codegraph/` to
+`.git/info/exclude` rather than to the shared `.gitignore`, writes
+`.github/ISSUE_TEMPLATE/` if the project has none, and installs and indexes
+[CodeGraph](https://github.com/colbymchenry/codegraph). Then it reads the repo
+to work out the areas issues are filed under and to write the documentation
+conventions into `.osct/docs/`.
+
+Re-running it changes nothing that already exists. `--no-codegraph` skips the
+part that edits your Claude Code configuration.
+
 ## The skills
 
 | Skill | What it does |
 |---|---|
+| `osct-init` | Sets a repository up: the `.osct/` tree, the git exclusions, the issue templates, and CodeGraph. Ships with `osct`. |
 | `osct-audit` | Sweeps the repo for bugs, features and tasks and writes issue drafts to `.osct/issue-ideas/`, one file each, every bug carrying a repro that was actually run. |
 | `osct-open-issue` | Turns a draft into a filed GitHub issue: the right template, a body under a minute of reading, the type and module label, and the draft moved to the filed folder. |
 | `osct-open-pr` | Branches off main, writes a one-paragraph body, links the issue, and opens the pull request. |

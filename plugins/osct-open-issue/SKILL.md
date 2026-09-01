@@ -10,8 +10,7 @@ A filed issue is short. A maintainer reads it in under a minute or it is too lon
 ## Tools
 
 - Collect the `file:line` refs you name in the body from the source, and settle "is this really missing" before you file a feature. `codegraph_explore` does both in one call where the repo is indexed.
-- Ponytail the Proposed Solution. The wanted API in as few lines as possible, no scaffolding, no config knob nobody asked for.
-- Caveman is for the chat, never for the issue. Issue text is plain human English.
+- Keep the Proposed Solution to the wanted API in as few lines as possible: no scaffolding, no config knob nobody asked for.
 
 ## 1. Pick the template
 

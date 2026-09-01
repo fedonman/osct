@@ -12,7 +12,6 @@ Findings go into a draft file first. Nothing reaches GitHub until the user appro
 - Where the repo is indexed by CodeGraph, `codegraph_explore` the changed symbols before you read the diff. It shows the callers the diff does not, which is where "the same defect is in three files" comes from. Without it, grep the callers of every symbol the diff touches.
 - Review the over-engineering axis too: reinvented stdlib, a new dependency for what a few lines do, an interface with one implementation, dead flexibility. Fold what you find in as normal numbered comments.
 - Every ```suggestion block is the shortest thing that works, in the idiom of the code around it.
-- Caveman the chat framing if you like. The comment bodies get posted, so they stay plain and casual.
 
 ## 1. Read the issue before the diff
 
