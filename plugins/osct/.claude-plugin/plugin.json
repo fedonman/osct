@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "osct",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The whole Open Source Contribution Toolkit. Bundles the audit, issue, pull request, review, review-response and documentation skills.",
   "author": { "name": "Vyron Vasileiadis", "url": "https://github.com/fedonman" },
   "homepage": "https://github.com/fedonman/osct",

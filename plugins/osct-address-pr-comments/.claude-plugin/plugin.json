@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "osct-address-pr-comments",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Verify PR review comments against the issue, PR, code and checks; implement valid fixes and draft terse replies for approval before posting.",
   "author": { "name": "Vyron Vasileiadis", "url": "https://github.com/fedonman" },
   "homepage": "https://github.com/fedonman/osct",

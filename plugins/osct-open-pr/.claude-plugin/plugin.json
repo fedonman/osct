@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "osct-open-pr",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Open a pull request from the CLI: branch off main, write a one-paragraph body, link the issue, and fall back to the REST endpoint when gh pr edit fails.",
   "author": { "name": "Vyron Vasileiadis", "url": "https://github.com/fedonman" },
   "homepage": "https://github.com/fedonman/osct",

@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "osct-open-issue",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "File a GitHub issue from the CLI: pick the template, keep the body short, set the type and the module label, and move the draft to the filed folder.",
   "author": { "name": "Vyron Vasileiadis", "url": "https://github.com/fedonman" },
   "homepage": "https://github.com/fedonman/osct",
