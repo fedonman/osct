@@ -1,0 +1,127 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Semantic version without the v prefix, for example 0.2.0
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Release v${{ inputs.version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_VERSION: ${{ inputs.version }}
+
+    steps:
+      - name: Check out the default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Prepare the version
+        id: prepare
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ ! "$RELEASE_VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "version must be MAJOR.MINOR.PATCH without a v prefix" >&2
+            exit 2
+          fi
+
+          release_tag="v$RELEASE_VERSION"
+          git fetch --tags --force
+
+          if git rev-parse --verify --quiet "refs/tags/$release_tag" >/dev/null; then
+            tagged_version=$(git show "$release_tag:plugins/osct/.codex-plugin/plugin.json" | python3 -c 'import json, sys; print(json.load(sys.stdin)["version"])')
+            if [ "$tagged_version" != "$RELEASE_VERSION" ]; then
+              echo "$release_tag points to plugin version $tagged_version" >&2
+              exit 1
+            fi
+            echo "tag_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            current_version=$(python3 scripts/set_plugin_version.py --current)
+            if [ "$current_version" != "$RELEASE_VERSION" ]; then
+              python3 scripts/set_plugin_version.py "$RELEASE_VERSION"
+            fi
+            echo "tag_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "tag=$release_tag" >> "$GITHUB_OUTPUT"
+
+      - name: Synchronize and validate
+        if: steps.prepare.outputs.tag_exists == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 scripts/sync_codex_bundle.py
+          python3 scripts/sync_codex_bundle.py --check
+          python3 scripts/set_plugin_version.py --check "$RELEASE_VERSION"
+
+          while IFS= read -r -d '' manifest; do
+            python3 -m json.tool "$manifest" >/dev/null
+          done < <(find . -type f \( -name plugin.json -o -name marketplace.json \) -print0)
+
+          bash -n plugins/osct/skills/osct-init/scripts/init.sh
+          python3 plugins/osct/skills/osct-docs/scripts/check_docs.py --help >/dev/null
+          git diff --check
+
+      - name: Commit and tag
+        if: steps.prepare.outputs.tag_exists == 'false'
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          RELEASE_TAG: ${{ steps.prepare.outputs.tag }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          changed=false
+          if ! git diff --quiet; then
+            changed=true
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add plugins
+            git diff --cached --check
+            git commit -m "Release $RELEASE_TAG"
+          fi
+
+          git tag -a "$RELEASE_TAG" -m "Release $RELEASE_TAG"
+          if [ "$changed" = true ]; then
+            git push --atomic origin "HEAD:$DEFAULT_BRANCH" "refs/tags/$RELEASE_TAG"
+          else
+            git push origin "refs/tags/$RELEASE_TAG"
+          fi
+
+      - name: Create the GitHub Release
+        env:
+          RELEASE_TAG: ${{ steps.prepare.outputs.tag }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "$RELEASE_TAG already has a GitHub Release"
+          else
+            gh release create "$RELEASE_TAG" --verify-tag --title "$RELEASE_TAG" --generate-notes
+          fi
+
+          echo "Released $RELEASE_TAG" >> "$GITHUB_STEP_SUMMARY"

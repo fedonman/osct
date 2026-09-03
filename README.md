@@ -72,6 +72,19 @@ python3 scripts/sync_codex_bundle.py
 python3 scripts/sync_codex_bundle.py --check
 ```
 
+## Releasing
+
+Run the **Release** workflow from the GitHub Actions tab and enter a stable
+semantic version without the `v` prefix, such as `0.2.0`. The workflow updates
+every plugin manifest, synchronizes and validates the Codex bundle, commits the
+version, tags that commit, and creates the GitHub Release with generated notes.
+
+The current manifest version can also be checked locally:
+
+```bash
+python3 scripts/set_plugin_version.py --current
+```
+
 ## The documentation checker
 
 `osct-docs` ships `scripts/check_docs.py`, which checks that code examples still
