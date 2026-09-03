@@ -29,9 +29,7 @@ codex plugin add osct@osct
 plugins, so you can install only what you need:
 
 ```
-/plugin install osct-docs@osct
 /plugin install osct-pr-review@osct
-/plugin install osct-address-pr-comments@osct
 ```
 
 ## Setting up a repository
@@ -54,15 +52,15 @@ part that edits your agent configuration.
 
 ## The skills
 
-| Skill | What it does |
-|---|---|
-| `osct-init` | Sets a repository up: the `.osct/` tree, the git exclusions, the issue templates, and CodeGraph. Ships with `osct`. |
-| `osct-audit` | Audits all or selected project areas across correctness, API, performance, maintainability, documentation, test coverage, CI and packaging, then writes verified issue drafts to `.osct/issue-ideas/`. |
-| `osct-open-issue` | Turns a draft into a filed GitHub issue: the right template, a body under a minute of reading, the type and module label, and the draft moved to the filed folder. |
-| `osct-open-pr` | Branches off main, writes a one-paragraph body, links the issue, and opens the pull request. |
-| `osct-pr-review` | Reviews a pull request into numbered, pasteable `file:line` comments with `suggestion` blocks, drafted to `.osct/reviews/` for approval before anything is posted. |
+| Skill                      | What it does |
+|----------------------------|--------------|
+| `osct-init`                | Sets a repository up: the `.osct/` tree, the git exclusions, the issue templates, and CodeGraph. Ships with `osct`. |
+| `osct-audit`               | Audits all or selected project areas across correctness, API, performance, maintainability, documentation, test coverage, CI and packaging, then writes verified issue drafts to `.osct/issue-ideas/`. |
+| `osct-open-issue`          | Turns a draft into a filed GitHub issue: the right template, a body under a minute of reading, the type and module label, and the draft moved to the filed folder. |
+| `osct-open-pr`             | Branches off main, writes a one-paragraph body, links the issue, and opens the pull request. |
+| `osct-pr-review`           | Reviews a pull request into numbered, pasteable `file:line` comments with `suggestion` blocks, drafted to `.osct/reviews/` for approval before anything is posted. |
 | `osct-address-pr-comments` | Checks reviewer comments against the issue, PR, code and tests, implements the ones that hold, and drafts terse replies for approval before posting. |
-| `osct-docs` | Carries a house writing style and a documentation checker. Per-project conventions, terminology and checker settings live in `.osct/docs/`, generated on first use. |
+| `osct-docs`                | Carries a house writing style and a documentation checker. Per-project conventions, terminology and checker settings live in `.osct/docs/`, generated on first use. |
 
 ## Maintaining the Codex bundle
 
