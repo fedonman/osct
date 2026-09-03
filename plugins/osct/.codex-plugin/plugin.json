@@ -1,0 +1,27 @@
+{
+  "name": "osct",
+  "version": "0.1.0",
+  "description": "Skills for auditing repositories, filing issues, opening and reviewing pull requests, addressing review comments, and writing documentation.",
+  "author": {
+    "name": "Vyron Vasileiadis",
+    "url": "https://github.com/fedonman"
+  },
+  "homepage": "https://github.com/fedonman/osct",
+  "repository": "https://github.com/fedonman/osct",
+  "license": "Apache-2.0",
+  "keywords": ["osct", "open-source", "contribution"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Open Source Contribution Toolkit",
+    "shortDescription": "Handle the work around an open-source change.",
+    "longDescription": "Audit a repository, file focused issues, open and review pull requests, address reviewer comments, and keep documentation accurate.",
+    "developerName": "Vyron Vasileiadis",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Audit this repository and draft the most valuable issues.",
+      "Open a concise pull request for the current change.",
+      "Address the reviewer comments on this pull request."
+    ]
+  }
+}

@@ -4,13 +4,27 @@
 set -euo pipefail
 
 skip_codegraph=0
-for arg in "$@"; do
-  case "$arg" in
+agent_target=claude
+while [ "$#" -gt 0 ]; do
+  case "$1" in
     --no-codegraph) skip_codegraph=1 ;;
-    -h|--help) sed -n '2,4p' "$0"; echo "usage: init.sh [--no-codegraph]"; exit 0 ;;
-    *) echo "unknown option: $arg" >&2; exit 2 ;;
+    --target)
+      [ "$#" -ge 2 ] || { echo "--target needs claude or codex" >&2; exit 2; }
+      agent_target=$2
+      shift
+      ;;
+    --target=*) agent_target=${1#*=} ;;
+    -h|--help) sed -n '2,4p' "$0"; echo "usage: init.sh [--no-codegraph] [--target claude|codex]"; exit 0 ;;
+    *) echo "unknown option: $1" >&2; exit 2 ;;
   esac
+  shift
 done
+
+case "$agent_target" in
+  claude) agent_name="Claude Code" ;;
+  codex) agent_name="Codex" ;;
+  *) echo "unknown target: $agent_target (expected claude or codex)" >&2; exit 2 ;;
+esac
 
 here=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 root=$(git rev-parse --show-toplevel) || { echo "not a git repository" >&2; exit 1; }
@@ -66,7 +80,7 @@ if [ "$skip_codegraph" = 1 ]; then
 fi
 
 # CodeGraph: the index the skills read instead of grepping. Installing wires the
-# MCP server into Claude Code globally, which is a change outside this repo.
+# MCP server into the selected agent globally, which is a change outside this repo.
 if ! command -v codegraph > /dev/null 2>&1; then
   if ! command -v npm > /dev/null 2>&1; then
     say "npm not found, skipped CodeGraph: install it from https://github.com/colbymchenry/codegraph"
@@ -77,9 +91,9 @@ if ! command -v codegraph > /dev/null 2>&1; then
 fi
 
 if [ -d .codegraph ]; then
-  codegraph install --target claude --location global --yes
-  say "CodeGraph wired into Claude Code; this project was already indexed"
+  codegraph install --target "$agent_target" --location global --yes
+  say "CodeGraph wired into $agent_name; this project was already indexed"
 else
-  codegraph install --target claude --location global --yes --init
-  say "CodeGraph wired into Claude Code and this project indexed"
+  codegraph install --target "$agent_target" --location global --yes --init
+  say "CodeGraph wired into $agent_name and this project indexed"
 fi

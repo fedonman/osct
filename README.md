@@ -1,8 +1,9 @@
 # Open Source Contribution Toolkit
 
-Six Claude Code skills for the work around a change rather than the change
-itself: finding what is worth fixing, filing it, opening the pull request,
-reviewing one, addressing review comments, and keeping the documentation true.
+Six skills for Codex and Claude Code that handle the work around a change rather
+than the change itself: finding what is worth fixing, filing it, opening the
+pull request, reviewing one, addressing review comments, and keeping the
+documentation true. The all-in-one plugin also includes `osct-init`.
 
 Each skill writes its working files under `.osct/` in the repo it is used in,
 and adds `.osct/` to `.git/info/exclude` rather than to the shared
@@ -10,13 +11,22 @@ and adds `.osct/` to `.git/info/exclude` rather than to the shared
 
 ## Installing
 
+### Codex
+
+```bash
+codex plugin marketplace add fedonman/osct
+codex plugin add osct@osct
+```
+
+### Claude Code
+
 ```
 /plugin marketplace add fedonman/osct
 /plugin install osct@osct
 ```
 
-`osct` is an aggregator and pulls in all six. To take only what you need,
-install them one at a time instead:
+`osct` bundles all six skills. Claude Code also exposes them as standalone
+plugins, so you can install only what you need:
 
 ```
 /plugin install osct-docs@osct
@@ -26,7 +36,7 @@ install them one at a time instead:
 
 ## Setting up a repository
 
-Once per project, run:
+Once per project, ask Codex to use `$osct-init`, or run this in Claude Code:
 
 ```
 /osct-init
@@ -40,7 +50,7 @@ to work out the areas issues are filed under and to write the documentation
 conventions into `.osct/docs/`.
 
 Re-running it changes nothing that already exists. `--no-codegraph` skips the
-part that edits your Claude Code configuration.
+part that edits your agent configuration.
 
 ## The skills
 
@@ -53,6 +63,16 @@ part that edits your Claude Code configuration.
 | `osct-pr-review` | Reviews a pull request into numbered, pasteable `file:line` comments with `suggestion` blocks, drafted to `.osct/reviews/` for approval before anything is posted. |
 | `osct-address-pr-comments` | Checks reviewer comments against the issue, PR, code and tests, implements the ones that hold, and drafts terse replies for approval before posting. |
 | `osct-docs` | Carries a house writing style and a documentation checker. Per-project conventions, terminology and checker settings live in `.osct/docs/`, generated on first use. |
+
+## Maintaining the Codex bundle
+
+The standalone plugin folders are the source for the six workflow skills. After
+changing one, refresh and check the all-in-one bundle:
+
+```bash
+python3 scripts/sync_codex_bundle.py
+python3 scripts/sync_codex_bundle.py --check
+```
 
 ## The documentation checker
 

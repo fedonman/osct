@@ -10,7 +10,7 @@
     {
       "name": "osct",
       "source": "./plugins/osct",
-      "description": "The whole Open Source Contribution Toolkit. Installs the audit, issue, pull request, review, review-response and documentation skills."
+      "description": "The whole Open Source Contribution Toolkit. Bundles the audit, issue, pull request, review, review-response and documentation skills."
     },
     {
       "name": "osct-audit",

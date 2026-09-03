@@ -14,9 +14,13 @@ overwritten.
 
 ## 1. Run the script
 
+Resolve `<osct-init-skill>` to the directory containing this `SKILL.md`, then run:
+
 ```bash
-bash "${CLAUDE_PLUGIN_ROOT}/skills/osct-init/scripts/init.sh"
+bash "<osct-init-skill>/scripts/init.sh" --target <agent>
 ```
+
+Use `codex` as the target in Codex and `claude` in Claude Code.
 
 It prints what it did, line by line. In order:
 
@@ -28,10 +32,10 @@ It prints what it did, line by line. In order:
   when the project has none. These are tracked files and the one thing here that
   reaches a commit, so tell the user they are there and let them decide.
 - Installs `@colbymchenry/codegraph` if the `codegraph` command is missing,
-  wires it into Claude Code, and indexes the project.
+  wires it into the active agent, and indexes the project.
 
-CodeGraph wiring is global: it edits the user's Claude Code configuration, not
-just this repo. If they would rather not, or npm is unavailable, pass
+CodeGraph wiring is global: it edits the user's Codex or Claude Code configuration,
+not just this repo. If they would rather not, or npm is unavailable, pass
 `--no-codegraph` and the rest still runs.
 
 ## 2. Work out the areas

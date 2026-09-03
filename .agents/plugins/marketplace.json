@@ -1,0 +1,20 @@
+{
+  "name": "osct",
+  "interface": {
+    "displayName": "Open Source Contribution Toolkit"
+  },
+  "plugins": [
+    {
+      "name": "osct",
+      "source": {
+        "source": "local",
+        "path": "./plugins/osct"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
