@@ -12,6 +12,7 @@ shared `.gitignore`, so nothing here can reach a commit by accident.
 | `filed/` | Drafts that became GitHub issues, moved here with the issue link. | No. |
 | `prs/` | Pull request bodies, one per branch. | No. |
 | `reviews/` | Drafted review comments, waiting for your approval before anything is posted. | Read them before they go out. |
+| `review-replies/` | Verified reviewer comments and exact reply drafts, waiting for your approval before anything is posted. | Read them before they go out. |
 
 The two files under `docs/` are written once from what the repo contains and
 then corrected by hand. Everything else is generated per task and safe to

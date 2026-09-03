@@ -5,12 +5,12 @@
     "name": "Vyron Vasileiadis",
     "url": "https://github.com/fedonman"
   },
-  "description": "The Open Source Contribution Toolkit: skills for auditing a repo, filing issues, opening and reviewing pull requests, and writing documentation.",
+  "description": "The Open Source Contribution Toolkit: skills for auditing a repo, filing issues, opening and reviewing pull requests, addressing review comments, and writing documentation.",
   "plugins": [
     {
       "name": "osct",
       "source": "./plugins/osct",
-      "description": "The whole Open Source Contribution Toolkit. Installs the audit, issue, pull request, review and documentation skills."
+      "description": "The whole Open Source Contribution Toolkit. Installs the audit, issue, pull request, review, review-response and documentation skills."
     },
     {
       "name": "osct-audit",
@@ -36,6 +36,11 @@
       "name": "osct-pr-review",
       "source": "./plugins/osct-pr-review",
       "description": "Review a pull request into numbered, pasteable file:line comments with suggestion blocks, drafted to .osct/reviews/ for approval before anything is posted."
+    },
+    {
+      "name": "osct-address-pr-comments",
+      "source": "./plugins/osct-address-pr-comments",
+      "description": "Verify PR review comments against the issue, PR, code and checks; implement valid fixes and draft terse replies for approval before posting."
     }
   ]
 }

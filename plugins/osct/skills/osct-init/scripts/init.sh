@@ -33,9 +33,9 @@ echo "osct init in $root"
 
 # The working tree. cp -n leaves anything that already exists alone, so a second
 # run never clobbers a project.md somebody has edited.
-mkdir -p .osct/docs .osct/issue-ideas .osct/filed .osct/prs .osct/reviews
+mkdir -p .osct/docs .osct/issue-ideas .osct/filed .osct/prs .osct/reviews .osct/review-replies
 seed "$here/templates/osct" .osct
-say ".osct/ ready (docs, issue-ideas, filed, prs, reviews)"
+say ".osct/ ready (docs, issue-ideas, filed, prs, reviews, review-replies)"
 
 # Keep it out of git without touching .gitignore, which is shared. --git-path
 # resolves correctly inside a worktree, where .git is a file.

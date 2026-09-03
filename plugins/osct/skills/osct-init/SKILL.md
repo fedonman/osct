@@ -21,7 +21,7 @@ bash "${CLAUDE_PLUGIN_ROOT}/skills/osct-init/scripts/init.sh"
 It prints what it did, line by line. In order:
 
 - Creates `.osct/` with `docs/`, `issue-ideas/`, `filed/`, `prs/` and
-  `reviews/`, and seeds `.osct/README.md` and the issue-ideas index.
+  `reviews/` and `review-replies/`, and seeds `.osct/README.md` and the issue-ideas index.
 - Adds `.osct/` and `.codegraph/` to `.git/info/exclude`, not to `.gitignore`,
   which is shared with everybody else on the project.
 - Writes `.github/ISSUE_TEMPLATE/` with a bug, feature, and task form, **only**
