@@ -1,6 +1,6 @@
 ---
 name: osct-audit
-description: Audit the repo for bugs, features and tasks and write them up as issue drafts under .osct/issue-ideas/, one file each, every bug carrying a repro that was actually run. Takes the whole project or a list of modules. Use when asked to audit, scan or sweep the codebase for problems, or to find work worth filing.
+description: Audit all or selected areas of a repo across correctness, API, performance, maintainability, documentation, test coverage, CI and packaging, then write verified issue drafts under .osct/issue-ideas/. Defaults to every area and focus. Use when asked to audit, scan or sweep a project, named modules, docs, tests or another focus for work worth filing.
 ---
 
 # Auditing the repo
@@ -18,9 +18,26 @@ A draft is only worth writing if someone else can trust it without redoing the w
 
 ## 1. Scope
 
-Default is the whole project, one area at a time. If the user names modules, do only those. Areas are the folders under `.osct/issue-ideas/`; on the first pass in a repo, create them from the project's own top-level modules and say which ones you chose.
+Scope has two independent axes:
+
+- **Areas** are modules, packages, subsystems or paths such as `compilers` and `qprogram`.
+- **Focuses** are correctness, API and features, performance, maintainability, documentation, test coverage, and CI and packaging.
+
+The default is every area across every focus. A user can narrow either axis or both, and can name more than one value on either axis. Apply a named focus to every selected area.
+
+Examples:
+
+- "Audit `compilers` and `qprogram`" means those two areas across every focus.
+- "Audit documentation" means the documentation focus across every area.
+- "Audit `qprogram` for test coverage and performance" means those two focuses in that area only.
+
+Do not silently widen a narrowed axis. For a full audit, work through the area-focus combinations one at a time so a strong pass in one module or theme does not stand in for the rest.
+
+Areas are the folders under `.osct/issue-ideas/`; on the first pass in a repo, create them from the project's own top-level modules and say which ones you chose.
 
 **Assign an area by where the fix goes, not by where the problem surfaces.** The adapter or backend layer is the trap: almost any behavioural bug shows up through it, and almost none of them get fixed there.
+
+An area filter controls what is inspected, while the draft area still records where the fix belongs. A documentation gap found while auditing `compilers` may therefore be filed under `docs`.
 
 Keep the drafts out of git without touching `.gitignore`, which is shared:
 
@@ -28,22 +45,28 @@ Keep the drafts out of git without touching `.gitignore`, which is shared:
 grep -qxF '.osct/' .git/info/exclude || echo '.osct/' >> .git/info/exclude
 ```
 
-## 2. What to look for
+## 2. What each focus covers
 
-In rough order of worth:
+When every focus is active, use this order. User-visible correctness on default paths remains the highest-value work.
 
-1. Wrong results with no error, on a default code path. Silent is worse than loud.
-2. Crashes on ordinary input.
-3. A public API that cannot do the obvious thing, or refuses input it already supports internally.
-4. Performance that makes a normal size unusable, with the numbers to show it.
-5. Missing coverage, CI or packaging gaps that let the above ship.
+1. **Correctness:** wrong results with no error, crashes on ordinary input, broken state and unsafe boundary behaviour. Silent failures on default paths come first.
+2. **API and features:** a public API that cannot do the obvious thing, refuses input already supported internally, or is inconsistent with the rest of the project.
+3. **Performance:** normal workloads made impractical by time, memory, I/O or needless repeated work. Measure against a relevant baseline.
+4. **Maintainability:** duplicate core logic, dead code, needless dependencies and abstractions, or complexity with a concrete cost. Do not turn personal style preferences into tasks.
+5. **Documentation:** false, missing or unusable public docs, tutorials, examples and docstrings. Compare every claim with the current API, run examples where practical, and use the docs checker or site build when the project has one. Do not file requests for more prose without a specific user-facing gap.
+6. **Test coverage:** meaningful public behaviour, error paths or regression boundaries that the suite cannot detect. Use the project's coverage tooling when present, but never file a percentage by itself; name the behaviour that can regress and the test that should protect it.
+7. **CI and packaging:** gaps that can ship a broken build, artifact or supported environment. Exercise the build and install path rather than inferring from configuration alone.
 
 Read the module's public surface first, then the paths its own docs and tutorials take. Bugs live where the tests are thin and the defaults are implicit.
+
+One problem may cross several focuses. Write one draft under its primary focus and mention the other effects there instead of duplicating it.
 
 ## 3. Check before you write
 
 - **Bug: run the repro.** Write the script, run it, paste the real output. If it does not reproduce, it is not a bug.
 - **Feature: grep first.** Half of "this is missing" turns out to exist under another name.
+- **Documentation: prove the mismatch.** Quote the current claim and the code or runnable result that contradicts it. For a missing page or docstring, name the public task that cannot be completed from the existing docs.
+- **Test coverage: name the unprotected behaviour.** Show why the existing suite would miss the regression and state the focused test to add. A low line count alone is not a finding.
 - **Nothing already open.** `gh issue list --state all --search "<keywords>"` before writing the draft.
 - **Measure any claim about speed or size.** A number you did not measure is a guess.
 
@@ -58,10 +81,10 @@ Title is the issue title, with the template prefix already on it: `[Bug]: `, `[F
 ```markdown
 # [Bug]: Schedule.eig returns spectra of the wrong size when a coefficient is zero
 
-Area: `analog` | Effort: S | Value: high | Checked: reproduced
+Area: `analog` | Focus: `correctness` | Effort: S | Value: high | Checked: reproduced
 ```
 
-Effort is S, M or L. Value is high, medium or low. Checked is `reproduced` when a script was run, `gap confirmed` when it was verified by reading the code.
+Focus is the primary focus that found the issue. Effort is S, M or L. Value is high, medium or low. Checked is `reproduced` when a script was run, `gap confirmed` when it was verified by reading the code.
 
 Sections, bugs:
 
@@ -79,13 +102,13 @@ These drafts are research notes and they are allowed to be long. The cutting hap
 
 - The header count line: how many ideas, split into bugs, features and tasks.
 - **Pick these up first**: confirmed bugs that give wrong results with no error, on default paths. That table only.
-- The per-area table, one row per idea, linking the file.
+- The per-area table, one row per idea, linking the file and naming its primary focus. Add a `Focus` column when an older index does not have one.
 - The filed count, `N of these are filed`, which the filing skill maintains after that.
 
 A title appears in both the pick-first list and its area table. Both rows move when a draft is filed.
 
 ## 6. Report
 
-Answer with the counts per area and the pick-first ones by title, nothing else. The drafts carry the detail.
+Answer with the counts per area and focus, then the pick-first ones by title, nothing else. The drafts carry the detail.
 
 Do not file anything from this skill. The user picks what gets filed.

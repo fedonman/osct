@@ -15,5 +15,5 @@ Confirmed bugs that give wrong results with no error, on a default code path.
 
 ## By area
 
-| Title | Area | Kind | Effort | Value | Checked |
-|---|---|---|---|---|---|
+| Title | Area | Focus | Kind | Effort | Value | Checked |
+|---|---|---|---|---|---|---|

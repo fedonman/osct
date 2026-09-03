@@ -57,7 +57,7 @@ part that edits your agent configuration.
 | Skill | What it does |
 |---|---|
 | `osct-init` | Sets a repository up: the `.osct/` tree, the git exclusions, the issue templates, and CodeGraph. Ships with `osct`. |
-| `osct-audit` | Sweeps the repo for bugs, features and tasks and writes issue drafts to `.osct/issue-ideas/`, one file each, every bug carrying a repro that was actually run. |
+| `osct-audit` | Audits all or selected project areas across correctness, API, performance, maintainability, documentation, test coverage, CI and packaging, then writes verified issue drafts to `.osct/issue-ideas/`. |
 | `osct-open-issue` | Turns a draft into a filed GitHub issue: the right template, a body under a minute of reading, the type and module label, and the draft moved to the filed folder. |
 | `osct-open-pr` | Branches off main, writes a one-paragraph body, links the issue, and opens the pull request. |
 | `osct-pr-review` | Reviews a pull request into numbered, pasteable `file:line` comments with `suggestion` blocks, drafted to `.osct/reviews/` for approval before anything is posted. |

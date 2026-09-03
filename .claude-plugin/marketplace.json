@@ -15,7 +15,7 @@
     {
       "name": "osct-audit",
       "source": "./plugins/osct-audit",
-      "description": "Audit a repo for bugs, features and tasks and write them up as issue drafts under .osct/issue-ideas/, each bug carrying a repro that was actually run."
+      "description": "Audit all or selected project areas and focuses, then write verified bugs, features and tasks under .osct/issue-ideas/."
     },
     {
       "name": "osct-docs",
