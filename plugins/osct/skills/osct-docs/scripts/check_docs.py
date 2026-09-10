@@ -158,7 +158,6 @@ PROPER_NOUNS = {
     "TOML",
 }
 
-MAX_LINE = 88
 MAX_BULLET_RUN = 12
 
 # Checks that describe the machine running them rather than the page being checked.
@@ -335,7 +334,6 @@ def check_style(doc: Doc) -> Iterator[Finding]:
     bullet_run_start = 0
     definitions = 0
     last_level = 0
-    in_table = False
 
     for i, raw in prose_lines(doc):
         stripped = INLINE_CODE_RE.sub("``", raw)
@@ -350,16 +348,6 @@ def check_style(doc: Doc) -> Iterator[Finding]:
             m = re.search(pattern, lowered)
             if m:
                 yield finding(i, "filler", f"{m.group(0)!r}: {advice}")
-
-        in_table = raw.lstrip().startswith("|")
-        # A line holding nothing but links cannot be wrapped: each URL is one token. The
-        # label may itself be an image, which is what a row of README badges is, and a
-        # badge row puts several of them on one line.
-        is_link_only = bool(
-            re.fullmatch(r"\s*(?:[-*]|\d+\.)?\s*(?:!?\[(?:!?\[[^\]]*\]\([^)]*\)|[^\]])*\]\([^)]*\)\s*)+[.,;:]?\s*", raw)
-        )
-        if len(raw) > MAX_LINE and not in_table and not is_link_only:
-            yield finding(i, "long-line", f"{len(raw)} chars; wrap prose near 80")
 
         heading = HEADING_RE.match(raw)
         if heading:
