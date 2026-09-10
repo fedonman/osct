@@ -1,6 +1,6 @@
 ---
 name: osct-open-pr
-description: Open a pull request from the CLI - branch off main, write a one-paragraph body, link the issue, and edit the body with the REST endpoint when gh pr edit fails. Use when asked to open, create or raise a PR, or to push a branch up for review.
+description: Open a pull request from the CLI - branch off main, write a one-paragraph body, keep the diff free of reflow, link the issue, and edit the body with the REST endpoint when gh pr edit fails. Use when asked to open, create or raise a PR, or to push a branch up for review.
 ---
 
 # Opening a PR
@@ -10,6 +10,7 @@ The diff and CI carry the detail. The body is one short paragraph.
 ## Tools
 
 - Work out the blast radius of the symbols you touched before pushing: it names the callers and the tests to run, including the ones the diff never mentions. `codegraph_explore` gives it in one call where the repo is indexed.
+- Never reflow a wrapped file. A patch to `.rst`, a docstring or a C comment touches only the lines whose words change; leave the neighbours alone even when they run longer than the file's usual width. Where a sentence grows and the wrap has to move anyway, break the new lines between sentences (semantic line breaks) rather than at the column limit. Read `git diff` before pushing and restore any line that is in it only because the wrap moved. Reviewers on projects like CPython ask for this by name, and reflow churn buries the change they came to read.
 - Cut the diff back before you open. Anything there to serve a case nobody asked for comes out now, not in review.
 - Commit subjects follow the repo's own style, check `git log --oneline`. Use Conventional Commits only if that log already does.
 
