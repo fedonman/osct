@@ -50,6 +50,16 @@ conventions into `.osct/docs/`.
 Re-running it changes nothing that already exists. `--no-codegraph` skips the
 part that edits your agent configuration.
 
+## Model and effort
+
+The skills are written for Opus 5.5 at `xhigh` effort, and in Claude Code each
+one sets `effort: xhigh` for the turn it runs in. `osct-audit` is the exception:
+it inherits the session effort, because it is written for a multi-agent run. It
+gives each area and focus its own agent and has a separate agent verify every
+finding, so run it with ultracode on, from `/effort ultracode` or the word
+`ultracode` in the request. Without subagents it still works, one area and focus
+at a time.
+
 ## The skills
 
 <table>

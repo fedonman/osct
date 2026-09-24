@@ -1,11 +1,14 @@
 ---
 name: osct-open-pr
 description: Open a pull request from the CLI - branch off main, write a one-paragraph body, keep the diff free of reflow, link the issue, and edit the body with the REST endpoint when gh pr edit fails. Use when asked to open, create or raise a PR, or to push a branch up for review.
+effort: xhigh
 ---
 
 # Opening a PR
 
 The diff and CI carry the detail. The body is one short paragraph.
+
+Done means the PR is open against `main`, the issue is linked, and `gh pr view` reads the body back as written. Opening it is the task, so go through to `gh pr create` without stopping to confirm. Stop and ask only when getting there would mean rewriting history that is already on the remote (step 1).
 
 ## Tools
 

@@ -9,12 +9,25 @@ The output is a folder of drafts, not filed issues. Filing is a separate step, s
 
 A draft is only worth writing if someone else can trust it without redoing the work. That means a repro that was run, or a quote from the file that proves the gap.
 
+Done means every selected area-focus combination has been swept, every candidate it turned up is either a draft or an entry in `rejected.md`, and the index is up to date. Keep going until then. Do not stop to report progress, offer to continue, or ask which combination to do next.
+
 ## Tools
 
 - **A code index first, where there is one.** One `codegraph_explore` call over an area returns the symbols, the call paths between them and their blast radius, which is how you pick what to read. Without an index, start from the module's public surface and follow the callers by grep.
 - Blast radius is audit signal. A defect in a symbol with 60 callers is worth more than the same defect in a leaf, and the caller count belongs in `## Why it matters`.
-- Send the wide reading sweeps to a read-only subagent so a whole-repo pass does not fill the context with file dumps. What comes back is `path:line` citations, which is what `## Code refs` wants anyway.
 - Keep every `## Suggested fix` to the smallest change at the root: one guard in the shared function rather than one per caller, and no new abstraction. If the honest fix is a deletion, say that.
+
+## How the run is organised
+
+This skill is written for a multi-agent run: Opus 5.5 in Claude Code with ultracode on, from `/effort ultracode` or the word `ultracode` in the request. A whole-repo audit in one context tends to stop after most of the combinations, to trust its own findings, and to lose the "does not count" rules once older turns are summarised. Separate agents with one job each avoid all three.
+
+- **Scope inline, then fan out.** Settle the areas and focuses yourself (step 1), then run the sweep as a workflow: one finder agent per area-focus combination, each in its own context. Without the Workflow tool, give each combination to its own subagent. With no subagents at all, take the combinations one at a time.
+- **Keep the task list in a file.** Before the sweep, write the combinations to `.osct/issue-ideas/audit-tasks.md`. Tick each one as its results come in, with a line on what it produced. Read that file, not the scrollback, to see what is left, and pick up from it after an interruption.
+- **Finders bring evidence, not drafts.** A finder reads its area through its focus, runs the checks in step 3, and returns each candidate with its evidence: `file:line` refs, the repro and its real output, the issue search it ran. Only you write under `.osct/issue-ideas/`, because ids run across all areas and the index has one writer.
+- **A different agent verifies every candidate.** Give each one to a verifier told to refute it: rerun the repro from scratch, look for the feature under another name, search the issue tracker, check the area. Read the evidence behind each verdict before you accept it. Survivors become drafts. The rest go to `rejected.md`, with the verifier's finding as the `Verdict:`.
+- **Merge before you write.** One root cause often shows up in several areas or focuses. Dedupe across every verified candidate and write one draft, under the area where the fix goes.
+- **Run until dry.** On a full audit, send a second round of finders to the combinations that came back thin, and stop when a round adds nothing new. Then have one agent ask what was missed: a focus not applied, a claim not run, a public module nobody read.
+- **Keep repros light.** The finders share one machine. Run the focused repro or the one test file, not the whole suite, and keep scratch scripts out of the working tree.
 
 ## 1. Scope
 
@@ -31,9 +44,9 @@ Examples:
 - "Audit documentation" means the documentation focus across every area.
 - "Audit `qprogram` for test coverage and performance" means those two focuses in that area only.
 
-Do not silently widen a narrowed axis. For a full audit, work through the area-focus combinations one at a time so a strong pass in one module or theme does not stand in for the rest.
+Do not silently widen a narrowed axis. Every combination gets its own finder, so a strong pass in one module or theme does not stand in for the rest.
 
-Areas are the folders under `.osct/issue-ideas/`; on the first pass in a repo, create them from the project's own top-level modules and say which ones you chose.
+Areas are the folders under `.osct/issue-ideas/`; on the first pass in a repo, create them from the project's own top-level modules, carry on, and name the ones you chose in the report.
 
 **Assign an area by where the fix goes, not by where the problem surfaces.** The adapter or backend layer is the trap: almost any behavioural bug shows up through it, and almost none of them get fixed there.
 
@@ -109,6 +122,6 @@ A title appears in both the pick-first list and its area table. Both rows move w
 
 ## 6. Report
 
-Answer with the counts per area and focus, then the pick-first ones by title, nothing else. The drafts carry the detail.
+Start with what needs the user, if anything: combinations you could not cover and why, such as a build that would not install, and the areas you created on a first pass. Then the counts per area and focus, then the pick-first ones by title, nothing else. The drafts carry the detail.
 
 Do not file anything from this skill. The user picks what gets filed.

@@ -1,6 +1,7 @@
 ---
 name: osct-docs
 description: Write or edit documentation in this repo. Use when touching docs/, the README, or a public docstring, and whenever a change to the code needs its documentation brought along. Carries the house writing style, the per-project conventions kept in .osct/docs/, the change checklist, and the docs checker.
+effort: xhigh
 ---
 
 # Writing documentation
@@ -14,12 +15,17 @@ Two things are project-specific and live in the repo, under `.osct/docs/`:
 `config.toml` holds the names the checker needs. Everything else is in this
 skill and is the same in every repo.
 
+Done means the pages say what the code does, the checker passes on the files
+you touched, and any step of the change checklist you did not do is named in
+your answer.
+
 ## Before anything else
 
 Read `.osct/docs/project.md`. If it is not there, generate it and
 `.osct/docs/config.toml` from what the repo actually contains, following
 [bootstrap.md](references/bootstrap.md), and show the user what you wrote before
-going on. Both files are committed; the rest of `.osct/` is drafts and is not.
+going on with the task, without waiting for a reply. Both files are committed;
+the rest of `.osct/` is drafts and is not.
 
 ## Check the claim before you write it
 

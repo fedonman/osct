@@ -1,11 +1,14 @@
 ---
 name: osct-pr-review
 description: Review a pull request against its issue, repository standards, documentation and regressions; produce numbered, pasteable file:line comments or a clean approval, drafted to .osct/reviews/ before anything is posted. Use when asked to review a PR, "review #123", "look at this PR", or given a GitHub pull request URL.
+effort: xhigh
 ---
 
 # PR review
 
 Findings go into a draft file first. Nothing reaches GitHub until the user approves it.
+
+Done means the draft is in `.osct/reviews/`, the chat answer shows the numbered comments or the approval body, and nothing has been posted. Get there in one run: check out, test, reproduce and draft without stopping to ask. The one stop is approval to post.
 
 ## Tools
 
@@ -90,7 +93,7 @@ If there are no comments:
 <everything that is context rather than a comment>
 ```
 
-With no findings, omit the numbered comment sections and say in `## Notes` what established that the issue is fixed. Number comments when there are any. Use the same numbers in the chat answer so "post 1, 3 and 5" is unambiguous.
+With no findings, omit the numbered comment sections and say in `## Notes` what established that the issue is fixed. Either way, `## Notes` names anything you could not run or confirm and where you looked. Number comments when there are any. Use the same numbers in the chat answer so "post 1, 3 and 5" is unambiguous.
 
 ## 7. Comment rules
 

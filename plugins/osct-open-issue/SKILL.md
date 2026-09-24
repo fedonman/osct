@@ -1,11 +1,14 @@
 ---
 name: osct-open-issue
 description: File a GitHub issue from the CLI - pick the template, keep the body under a minute of reading, set the type and the module label, and move the draft to the filed folder. Use when asked to open, file or create an issue, or to turn a draft or a finding into one.
+effort: xhigh
 ---
 
 # Filing an issue
 
 A filed issue is short. A maintainer reads it in under a minute or it is too long.
+
+Done means the issue is on GitHub with its type and module label set, and its draft has moved to `.osct/filed/` with the index updated. Filing is what was asked, so do not stop to show the body first unless the user asked to see it. Asked for several, file them all in one run.
 
 ## Tools
 

@@ -1,6 +1,7 @@
 ---
 name: osct-init
 description: Set up the Open Source Contribution Toolkit in a repository - create the .osct working tree, seed the issue templates if the project has none, keep both out of git, and install and index CodeGraph. Use when asked to run osct init, set up osct, or initialise the toolkit in a project.
+effort: xhigh
 ---
 
 # Setting up a repository
@@ -11,6 +12,10 @@ conventions it already follows.
 
 Run it once per repository. It is safe to run again; nothing already present is
 overwritten.
+
+Done means all four steps below have run and the report is in front of the
+user. Go through them without stopping: the areas and the documentation files
+go in the report for the user to correct, not to them as questions mid-run.
 
 ## 1. Run the script
 
@@ -65,6 +70,7 @@ at the conventions.
 
 ## 4. Report
 
-Say what was created, which areas you chose, whether the issue templates are new
-tracked files, and whether CodeGraph was installed or was already there. Keep it
-to a few lines; the user can read `.osct/README.md` for the rest.
+Lead with what the user may want to act on: the areas you chose, and whether the
+issue templates are new tracked files. Then say what was created and whether
+CodeGraph was installed or was already there. Keep it to a few lines; the user
+can read `.osct/README.md` for the rest.
