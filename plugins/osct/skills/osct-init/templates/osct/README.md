@@ -8,7 +8,7 @@ shared `.gitignore`, so nothing here can reach a commit by accident.
 |---|---|---|
 | `docs/project.md` | Documentation surfaces, the change checklist, the project's terminology. | Yes, and you should. |
 | `docs/config.toml` | What the documentation checker needs to know about this project. | Yes. |
-| `issue-ideas/` | Audit drafts, one file per idea, in a folder per area. `README.md` is the index. | The index is maintained by the skills. |
+| `issue-ideas/` | Audit drafts, one file per idea, in a folder per area. `README.md` is the index; `audit-tasks.md` tracks the last audit's progress. | The index is maintained by the skills. |
 | `filed/` | Drafts that became GitHub issues, moved here with the issue link. | No. |
 | `prs/` | Pull request bodies, one per branch. | No. |
 | `reviews/` | Drafted review comments, waiting for your approval before anything is posted. | Read them before they go out. |

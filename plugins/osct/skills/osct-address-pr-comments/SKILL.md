@@ -1,11 +1,14 @@
 ---
 name: osct-address-pr-comments
 description: Verify review comments on an existing GitHub pull request against the linked issues, PR context, current code and checks; implement comments that hold, and draft terse replies for approval before posting. Use when asked to handle, address or respond to reviewer feedback on a PR.
+effort: xhigh
 ---
 
 # Addressing PR review comments
 
 A review comment is a claim to check, not an instruction to accept blindly. Fix the comments that hold and answer the ones that do not. Nothing is posted to GitHub until the user approves the exact replies.
+
+Done means every actionable comment has a verdict, the correct ones are fixed and tested, and the numbered replies are in front of the user. Go from step 1 to step 5 without pausing between comments. Step 5 is the stop.
 
 ## 1. Read the whole request
 
@@ -64,7 +67,7 @@ Short, plain, human. No em dashes, throat-clearing, defensive language, or resta
 
 ## 5. Show the user, then stop
 
-Display every exact proposed reply in chat, numbered the same way as the draft and headed by its `file:line` or thread. Beside it, say only whether it was fixed, already satisfied, incorrect or debatable, plus the focused check that supports that verdict. End by saying that nothing has been posted and asking the user to approve all replies, name the numbers to post, or edit their wording.
+Display every exact proposed reply in chat, numbered the same way as the draft and headed by its `file:line` or thread. Beside it, say only whether it was fixed, already satisfied, incorrect or debatable, plus the focused check that supports that verdict. If a verdict rests on something you could not run, say so beside it. End by saying that nothing has been posted and asking the user to approve all replies, name the numbers to post, or edit their wording.
 
 Do not treat silence, a request to reword, or approval of the code changes as approval to post. When wording changes, show the final text again unless the user explicitly says to post that wording.
 
