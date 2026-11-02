@@ -27,7 +27,7 @@ The classic branch-protection endpoint returns 404 "Branch not protected" even w
 
 ## 2. Commit messages
 
-Short verb phrase, plain words. No em dashes. Never add `Co-Authored-By: Claude`, a "Generated with Claude Code" footer, or any other mention of AI, in the commit, the body, or anywhere else.
+The commit message is one descriptive sentence: a short verb phrase in plain words. Don't add a long description under it. No em dashes. Never add `Co-Authored-By: Claude`, a "Generated with Claude Code" footer, or any other mention of AI, in the commit, the body, or anywhere else.
 
 ## 3. The body is one paragraph
 
