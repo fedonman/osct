@@ -30,7 +30,7 @@
     {
       "name": "osct-open-pr",
       "source": "./plugins/osct-open-pr",
-      "description": "Open a pull request from the CLI: branch off main, write a one-paragraph body, link the issue, and fall back to the REST endpoint when gh pr edit fails."
+      "description": "Open a pull request from the CLI: branch off main, write a one-sentence body, link the issue, and fall back to the REST endpoint when gh pr edit fails."
     },
     {
       "name": "osct-pr-review",

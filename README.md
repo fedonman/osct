@@ -84,7 +84,7 @@ at a time.
     </tr>
     <tr>
       <td width="240" nowrap="nowrap"><code>osct-open-pr</code></td>
-      <td>Branches off main, writes a one-paragraph body, links the issue, and opens the pull request.</td>
+      <td>Branches off main, writes a one-sentence body, links the issue, and opens the pull request.</td>
     </tr>
     <tr>
       <td width="240" nowrap="nowrap"><code>osct-pr-review</code></td>

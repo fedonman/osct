@@ -1,12 +1,12 @@
 ---
 name: osct-open-pr
-description: Open a pull request from the CLI - branch off main, write a one-paragraph body, keep the diff free of reflow, link the issue, and edit the body with the REST endpoint when gh pr edit fails. Use when asked to open, create or raise a PR, or to push a branch up for review.
+description: Open a pull request from the CLI - branch off main, write a one-sentence body, keep the diff free of reflow, link the issue, and edit the body with the REST endpoint when gh pr edit fails. Use when asked to open, create or raise a PR, or to push a branch up for review.
 effort: xhigh
 ---
 
 # Opening a PR
 
-The diff and CI carry the detail. The body is one short paragraph.
+The diff and CI carry the detail. The body is one descriptive sentence.
 
 Done means the PR is open against `main`, the issue is linked, and `gh pr view` reads the body back as written. Opening it is the task, so go through to `gh pr create` without stopping to confirm. Stop and ask only when getting there would mean rewriting history that is already on the remote (step 1).
 
@@ -29,11 +29,11 @@ The classic branch-protection endpoint returns 404 "Branch not protected" even w
 
 Short verb phrase, plain words. No em dashes. Never add `Co-Authored-By: Claude`, a "Generated with Claude Code" footer, or any other mention of AI, in the commit, the body, or anywhere else.
 
-## 3. The body is one paragraph
+## 3. The body is one sentence
 
-Say what changed. That is all.
+The PR description is a single descriptive sentence that says what changed. Don't add a long description.
 
-No `## What was wrong` / `## What changed` / `## Verification` headings. No pasted test output, no before/after command transcripts, no note about local environment quirks. Aim for a third of what feels complete: a body that starts at 370 words should ship at 60.
+No second paragraph, no bullet list, no `## What was wrong` / `## What changed` / `## Verification` headings. No pasted test output, no before/after command transcripts, no note about local environment quirks.
 
 Link the issue on its own line, `Closes #123`, and let the issue carry the reasoning.
 
