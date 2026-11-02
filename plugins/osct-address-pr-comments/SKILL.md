@@ -39,7 +39,7 @@ If sources disagree, call it debatable instead of choosing the convenient one. I
 
 For every correct comment, make the smallest fix at the root cause. Add or adjust a test when behaviour changes, and keep documentation in step when the public contract changes. Do not add source comments that narrate the review, and do not fold unrelated cleanup into the patch.
 
-Preserve unrelated work in a dirty tree. A reply saying "done" may only be posted after its fix is on the PR head branch and the relevant checks pass. Never force-push review fixes.
+Preserve unrelated work in a dirty tree. A reply saying "done" may only be posted after its fix is on the PR head branch and the relevant checks pass. Never force-push review fixes. The commit message is one descriptive sentence, with no long description under it.
 
 Do not change the code for an incorrect or debatable comment unless the user chooses that trade-off after seeing the draft response.
 

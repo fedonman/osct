@@ -26,6 +26,7 @@ Read `.osct/docs/project.md`. If it is not there, generate it and
 [bootstrap.md](references/bootstrap.md), and show the user what you wrote before
 going on with the task, without waiting for a reply. Both files are committed;
 the rest of `.osct/` is drafts and is not.
+A commit message is one descriptive sentence, with no long description under it.
 
 ## Check the claim before you write it
 
